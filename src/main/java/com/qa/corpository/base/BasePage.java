@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -42,22 +41,23 @@ public class BasePage {
 	public WebDriver init_driver(String browser) {
 
 		System.out.println("Browser value is: " + browser);
-
+		optionManager = new OptionsManager(prop);
+	
 		if (browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			if (Boolean.parseBoolean(prop.getProperty("Remote"))) {
+			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
 				init_remoteWebDriver(browser);
 			} else {
-				ltDriver.set(new ChromeDriver());
+				ltDriver.set(new ChromeDriver(optionManager.getChromeOptions()));
 			}
 		}
 
 		else if (browser.equalsIgnoreCase("Firefox")) {
 			WebDriverManager.firefoxdriver().setup();
-			if (Boolean.parseBoolean(prop.getProperty("Remote"))) {
+			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
 				init_remoteWebDriver(browser);
 			} else {
-				ltDriver.set(new FirefoxDriver());
+				ltDriver.set(new FirefoxDriver(optionManager.getFirefoOptions()));
 			}
 		}
 
@@ -66,7 +66,7 @@ public class BasePage {
 		}
 		getDriver().manage().deleteAllCookies();
 		getDriver().manage().window().maximize();
-		getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	//	getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		return getDriver();
 
 	}
@@ -116,8 +116,8 @@ public class BasePage {
 	}
 
 	public void init_remoteWebDriver(String browser) {
-		
-		System.out.println("Runnin on Remote Grid System");
+
+		System.out.println("Running on Remote Grid System");
 
 		if (browser.equalsIgnoreCase("Chrome")) {
 

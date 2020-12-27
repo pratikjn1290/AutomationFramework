@@ -7,28 +7,28 @@
 			class-name="com.qa.corpository.testlisteners.AllureReportListner" />
 	</listeners>
 
-	<test name="LoginPage Test">
-		<parameter name="browserName" value="chrome"></parameter>
+	<test name="LoginPage Test" parallel="true" thread-count="2">
+	<parameter name="browserName" value="chrome"></parameter>
 		<classes>
 			<class name="com.qa.corpository.tests.LoginPageTest" />
 		</classes>
 	</test>
-	<test name="AccountPage Test">
-		<parameter name="browserName" value="chrome"></parameter>
+	<test name="AccountPage Test" parallel="true" thread-count="2">
+	<parameter name="browserName" value="chrome"></parameter>
 		<classes>
 			<class name="com.qa.corpository.tests.AccountPageTest" />
 		</classes>
 	</test>
 
-	<test name="Product Info">
-		<parameter name="browserName" value="chrome"></parameter>
+	<test name="Product Info" parallel="true" thread-count="2">
+	<parameter name="browserName" value="firefox"></parameter>
 		<classes>
 			<class name="com.qa.corpository.tests.ProductInfoTest" />
 		</classes>
 	</test>
 
-	<test name="Add To Cart Test">
-		<parameter name="browserName" value="chrome"></parameter>
+	<test name="Add To Cart Test" parallel="true" thread-count="2">
+	<parameter name="browserName" value="chrome"></parameter>
 		<classes>
 			<class name="com.qa.corpository.tests.AddToCartTest" />
 		</classes>

@@ -30,7 +30,7 @@ public class BaseTest {
 		basePage = new BasePage();
 		prop = basePage.init_prop();
 		String browser = prop.getProperty("browser");
-		if(browserName!= null)
+		if(browserName != null)
 		{
 			browser = browserName;
 		}
